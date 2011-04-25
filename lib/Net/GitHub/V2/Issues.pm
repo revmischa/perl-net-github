@@ -16,7 +16,7 @@ sub search {
     my $repo  = $self->repo;
     my $url   = "issues/search/$owner/$repo/$state/" . uri_escape($word);
     
-    return $self->get_json_to_obj( $url, 'issues' );
+    return $self->get_json_to_obj_authed( $url, 'issues' );
 }
 
 sub list {
@@ -25,7 +25,7 @@ sub list {
     my $owner = $self->owner;
     my $repo  = $self->repo;
     
-    return $self->get_json_to_obj( "issues/list/$owner/$repo/$state", 'issues' );
+    return $self->get_json_to_obj_authed( "issues/list/$owner/$repo/$state", 'issues' );
 }
 
 sub view {
@@ -34,7 +34,7 @@ sub view {
     my $owner = $self->owner;
     my $repo  = $self->repo;
     
-    return $self->get_json_to_obj( "issues/show/$owner/$repo/$id", 'issue' );
+    return $self->get_json_to_obj_authed( "issues/show/$owner/$repo/$id", 'issue' );
 }
 
 sub open {
@@ -117,7 +117,7 @@ sub comments {
     my $repo    = $self->repo;
 
     my $url = "issues/comments/$owner/$repo/$id";
-    my $result = $self->get_json_to_obj( $url, 'comments');
+    my $result = $self->get_json_to_obj_authed( $url, 'comments');
 
     return $result;
 }
